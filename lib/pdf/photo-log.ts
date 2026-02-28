@@ -1,0 +1,1 @@
+// Generate photo log PDF
