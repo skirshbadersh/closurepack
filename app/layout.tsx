@@ -4,6 +4,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import "./globals.css";
 
+// Prevent Next.js from prerendering any page at build time — Clerk
+// requires NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY which may not be available
+// during the Vercel build step.
+export const dynamic = "force-dynamic";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
