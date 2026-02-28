@@ -3,6 +3,9 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { AppHeader } from "@/components/app-header";
 import { ensureUser } from "@/lib/auth/ensure-user";
 
+// All app routes require auth + DB access at runtime — never prerender
+export const dynamic = "force-dynamic";
+
 export default async function AppLayout({
   children,
 }: {
