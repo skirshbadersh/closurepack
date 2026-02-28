@@ -5,8 +5,8 @@ import { cookies } from "next/headers";
  * Server Supabase client — use in server components and server actions.
  * Uses the anon key with cookie-based auth; RLS policies enforce tenant isolation.
  */
-export function createServerClient() {
-  const cookieStore = cookies();
+export async function createServerClient() {
+  const cookieStore = await cookies();
 
   return createSSRClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

@@ -1,3 +1,8 @@
-export default function ExportPage({ params }: { params: { id: string } }) {
-  return <div>Export + Submission Checklist: {params.id}</div>;
+export default async function ExportPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <div>Export + Submission Checklist: {id}</div>;
 }

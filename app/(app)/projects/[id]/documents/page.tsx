@@ -1,3 +1,8 @@
-export default function DocumentsPage({ params }: { params: { id: string } }) {
-  return <div>Generated Docs Preview: {params.id}</div>;
+export default async function DocumentsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <div>Generated Docs Preview: {id}</div>;
 }

@@ -1,7 +1,8 @@
-export default function ProjectOverviewPage({
+export default async function ProjectOverviewPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  return <div>Project Overview + Checklist: {params.id}</div>;
+  const { id } = await params;
+  return <div>Project Overview + Checklist: {id}</div>;
 }
