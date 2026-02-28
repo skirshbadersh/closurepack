@@ -2,8 +2,43 @@ import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { FolderOpen, Plus } from "lucide-react";
 import type { Project } from "@/types";
+
+function statusBadgeVariant(status: string) {
+  switch (status) {
+    case "draft":
+      return "secondary" as const;
+    case "in_progress":
+      return "default" as const;
+    case "ready":
+      return "default" as const;
+    case "submitted":
+      return "outline" as const;
+    case "accepted":
+      return "default" as const;
+    default:
+      return "secondary" as const;
+  }
+}
+
+function statusLabel(status: string) {
+  switch (status) {
+    case "draft":
+      return "Draft";
+    case "in_progress":
+      return "In Progress";
+    case "ready":
+      return "Ready";
+    case "submitted":
+      return "Submitted";
+    case "accepted":
+      return "Accepted";
+    default:
+      return status;
+  }
+}
 
 export default async function ProjectsPage() {
   const clerkUser = await currentUser();
@@ -56,10 +91,14 @@ export default async function ProjectsPage() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold">{project.name}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {project.facility_name || "No facility set"} &middot;{" "}
-                    {project.status.replace("_", " ")}
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold">{project.name}</h3>
+                    <Badge variant={statusBadgeVariant(project.status)}>
+                      {statusLabel(project.status)}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {project.facility_name || "No facility set"}
                   </p>
                 </div>
                 <span className="text-xs text-muted-foreground">
