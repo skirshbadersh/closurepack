@@ -113,7 +113,7 @@ export default async function ProjectsPage() {
           <FolderOpen className="h-12 w-12 text-muted-foreground/50 mb-4" />
           <h2 className="text-lg font-semibold mb-1">No projects yet</h2>
           <p className="text-sm text-muted-foreground mb-6 max-w-sm">
-            Create your first UST closure package to get started. You'll be
+            Create your first UST closure package to get started. You&apos;ll be
             guided through facility info, tank inventory, and document assembly.
           </p>
           <Link href="/projects/new">
